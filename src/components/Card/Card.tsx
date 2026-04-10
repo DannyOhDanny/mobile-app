@@ -25,7 +25,6 @@ export const Card = ({ product, viewMode = 'grid' }: CardProps) => {
     : price;
   const originalPrice = hasDiscount ? price : null;
 
-  // Рейтинг в виде звёзд (целое число)
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 >= 0.5;
 
@@ -45,7 +44,7 @@ export const Card = ({ product, viewMode = 'grid' }: CardProps) => {
             color="#fbbf24"
             strokeWidth={1.5}
           />
-        ); // можно иконку полузвезды, но упростим
+        );
       } else {
         stars.push(<Star key={i} size={14} fill="none" color="#cbd5e1" />);
       }
@@ -86,7 +85,7 @@ export const Card = ({ product, viewMode = 'grid' }: CardProps) => {
           <button
             className={styles.listCartBtn}
             onClick={() => addToCart(product)}>
-            <ShoppingCart size={18} /> В корзину
+            <ShoppingCart size={18} /> Add
           </button>
         </div>
       </div>
@@ -126,7 +125,7 @@ export const Card = ({ product, viewMode = 'grid' }: CardProps) => {
           <button
             className={styles.cartBtn}
             onClick={() => addToCart(product)}
-            aria-label="Добавить в корзину">
+            aria-label="add to cart">
             <ShoppingCart size={18} />
           </button>
         </div>

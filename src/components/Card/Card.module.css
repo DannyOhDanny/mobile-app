@@ -204,7 +204,7 @@
 }
 
 .listCartBtn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -217,7 +217,6 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
-  width: fit-content;
   margin-top: 0.25rem;
 }
 

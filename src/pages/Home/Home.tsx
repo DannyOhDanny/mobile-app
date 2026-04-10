@@ -28,15 +28,17 @@ export const Home = () => {
           onChange={setSearchTerm}
           placeholder="Search by brand or product name..."
         />
-        <div className={styles.categories}>
-          {categories.map(cat => (
-            <button
-              key={cat}
-              className={`${styles.categoryBtn} ${activeCategory === cat ? styles.active : ''}`}
-              onClick={() => setActiveCategory(cat)}>
-              {cat}
-            </button>
-          ))}
+        <div className={styles.categoriesWrapper}>
+          <div className={styles.categories}>
+            {categories.map(cat => (
+              <button
+                key={cat}
+                className={`${styles.categoryBtn} ${activeCategory === cat ? styles.active : ''}`}
+                onClick={() => setActiveCategory(cat)}>
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

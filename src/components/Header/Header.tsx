@@ -29,17 +29,7 @@ export const Header = () => {
                 Main
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/about"
-                className={({ isActive }) =>
-                  isActive
-                    ? `${styles.navLink} ${styles.active}`
-                    : styles.navLink
-                }>
-                About
-              </NavLink>
-            </li>
+
             <li>
               <NavLink
                 to="/catalog"
@@ -49,6 +39,17 @@ export const Header = () => {
                     : styles.navLink
                 }>
                 Catalog{' '}
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.navLink} ${styles.active}`
+                    : styles.navLink
+                }>
+                About
               </NavLink>
             </li>
           </ul>
@@ -78,18 +79,6 @@ export const Header = () => {
             </li>
             <li>
               <NavLink
-                to="/about"
-                className={({ isActive }) =>
-                  isActive
-                    ? `${styles.mobileNavLink} ${styles.active}`
-                    : styles.mobileNavLink
-                }
-                onClick={() => setIsMenuOpen(false)}>
-                About
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
                 to="/catalog"
                 className={({ isActive }) =>
                   isActive
@@ -98,6 +87,18 @@ export const Header = () => {
                 }
                 onClick={() => setIsMenuOpen(false)}>
                 Catalog
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.mobileNavLink} ${styles.active}`
+                    : styles.mobileNavLink
+                }
+                onClick={() => setIsMenuOpen(false)}>
+                About
               </NavLink>
             </li>
           </ul>
