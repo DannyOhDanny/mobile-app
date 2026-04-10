@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "baseUrl": ".",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -36,5 +35,6 @@
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.0",
     "vite": "^8.0.4"
-  }
+  },
+  "homepage": "https://DannyOhDanny.github.io/mobile-app/"
 }
