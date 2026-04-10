@@ -4,8 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/mobile-app/',
   plugins: [react(), tailwindcss()],
+  base: './',
   build: {
     outDir: 'build'
   }
