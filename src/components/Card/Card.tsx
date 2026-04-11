@@ -59,7 +59,12 @@ export const Card = ({ product, viewMode = 'grid' }: CardProps) => {
           <div className={styles.discountBadge}>-{discountPercentage}%</div>
         )}
         <div className={styles.listImage}>
-          <img src={thumbnail} alt={title} loading="lazy" />
+          <img
+            src={thumbnail}
+            alt={title}
+            loading="eager"
+            fetchPriority="high"
+          />
         </div>
         <div className={styles.listContent}>
           <h3 className={styles.title}>{title}</h3>
@@ -98,7 +103,7 @@ export const Card = ({ product, viewMode = 'grid' }: CardProps) => {
         <div className={styles.discountBadge}>-{discountPercentage}%</div>
       )}
       <div className={styles.imageWrapper}>
-        <img src={thumbnail} alt={title} loading="lazy" />
+        <img src={thumbnail} alt={title} loading="eager" fetchPriority="high" />
       </div>
       <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>

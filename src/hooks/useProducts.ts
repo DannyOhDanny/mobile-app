@@ -17,7 +17,7 @@ export const useProducts = () => {
     const loadCategories = async () => {
       try {
         const cats = await fetchCategories();
-        setCategories(['Все', ...cats]);
+        setCategories(['All', ...cats]);
       } catch (err) {
         console.error(err);
       }
@@ -29,7 +29,7 @@ export const useProducts = () => {
     setLoading(true);
     try {
       let data: Product[];
-      if (!category || category === 'Все') {
+      if (!category || category === 'All') {
         data = await fetchProducts(30);
       } else {
         data = await fetchProductsByCategory(category);

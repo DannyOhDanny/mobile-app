@@ -6,9 +6,7 @@ export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        {/* Сетка блоков */}
         <div className={styles.grid}>
-          {/* Блок бренда */}
           <div className={styles.block}>
             <h3 className={styles.brand}>
               Market<span className={styles.accent}>Flow</span>

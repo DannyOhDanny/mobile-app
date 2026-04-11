@@ -160,6 +160,7 @@
 }
 
 .listImage {
+  aspect-ratio: 1/1;
   width: 100px;
   height: 100px;
   flex-shrink: 0;

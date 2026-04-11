@@ -1,10 +1,10 @@
 import { useProducts } from '../../hooks/useProducts';
 import { Card } from '../../components/Card/Card';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
-import { Loader } from '../../components/Loader/Loader';
+import { SkeletonCard } from '../../components/SkletonCard/SkeletonCrad';
 import styles from './Home.module.css';
 
-export const Home = () => {
+const Home = () => {
   const {
     products,
     loading,
@@ -43,7 +43,11 @@ export const Home = () => {
       </div>
 
       {loading ? (
-        <Loader />
+        <div className={styles.grid}>
+          {Array.from({ length: 8 }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </div>
       ) : products.length === 0 ? (
         <div className={styles.empty}>No items found 😔</div>
       ) : (
@@ -56,3 +60,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;

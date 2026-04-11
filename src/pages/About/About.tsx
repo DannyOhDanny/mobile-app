@@ -1,7 +1,7 @@
 import { Globe, Zap, Shield, Users, TrendingUp, Award } from 'lucide-react';
 import styles from './About.module.css';
 
-export const About = () => {
+const About = () => {
   return (
     <div className={styles.about}>
       <section className={styles.hero}>
@@ -34,7 +34,7 @@ export const About = () => {
             <img
               src="https://picsum.photos/id/20/500/400"
               alt="MarketFlow warehouse and delivery illustration"
-              loading="lazy"
+              loading="lazy" decoding="async"
             />
           </div>
         </div>
@@ -133,3 +133,4 @@ export const About = () => {
     </div>
   );
 };
+export default About;

@@ -1,0 +1,64 @@
+.skeleton {
+  background: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.image {
+  aspect-ratio: 1 / 1;
+  background: #e2e8f0;
+}
+
+.content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.title {
+  height: 1.25rem;
+  width: 80%;
+  background: #e2e8f0;
+  border-radius: 0.25rem;
+}
+
+.brand {
+  height: 0.875rem;
+  width: 50%;
+  background: #e2e8f0;
+  border-radius: 0.25rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.price {
+  height: 1.125rem;
+  width: 40%;
+  background: #e2e8f0;
+  border-radius: 0.25rem;
+}
+
+.button {
+  width: 2rem;
+  height: 2rem;
+  background: #e2e8f0;
+  border-radius: 9999px;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

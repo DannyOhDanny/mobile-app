@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { Filter, Grid3x3, List, X } from 'lucide-react';
 import { useProducts } from '../../hooks/useProducts';
 import { Card } from '../../components/Card/Card';
+import { SkeletonCard } from '../../components/SkletonCard/SkeletonCrad';
 import styles from './Catalog.module.css';
 
-export const Catalog = () => {
+const Catalog = () => {
   const { products, loading, categories, activeCategory, setActiveCategory } =
     useProducts();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -53,6 +54,7 @@ export const Catalog = () => {
     <div className={styles.catalog}>
       <div className={styles.controls}>
         <button
+          aria-label="filter-mode"
           className={styles.filterBtn}
           onClick={() => setIsFilterOpen(true)}>
           <Filter size={20} />
@@ -64,11 +66,13 @@ export const Catalog = () => {
         </button>
         <div className={styles.viewToggle}>
           <button
+            aria-label="grid-mode"
             className={`${styles.viewBtn} ${viewMode === 'grid' ? styles.active : ''}`}
             onClick={() => handleViewModeChange('grid')}>
             <Grid3x3 size={20} />
           </button>
           <button
+            aria-label="list-mode"
             className={`${styles.viewBtn} ${viewMode === 'list' ? styles.active : ''}`}
             onClick={() => handleViewModeChange('list')}>
             <List size={20} />
@@ -86,20 +90,21 @@ export const Catalog = () => {
         className={`${styles.filterDrawer} ${isFilterOpen ? styles.open : ''}`}>
         <div className={styles.filterHeader}>
           <h3>Filters</h3>
-          <button onClick={() => setIsFilterOpen(false)}>
+          <button onClick={() => setIsFilterOpen(false)} aria-label="Menu">
             <X size={24} />
           </button>
         </div>
         <div className={styles.filterContent}>
           <div className={styles.filterGroup}>
-            <label>Category</label>
+            <label htmlFor="category-select">Category</label>
             <select
+              id="category-select"
               value={activeCategory || ''}
               onChange={e => setActiveCategory(e.target.value || '')}
               className={styles.select}>
               <option value="">All categories</option>
               {categories
-                .filter(c => c !== 'Все')
+                .filter(c => c !== 'All')
                 .map(cat => (
                   <option key={cat} value={cat}>
                     {cat}
@@ -108,8 +113,8 @@ export const Catalog = () => {
             </select>
           </div>
           <div className={styles.filterGroup}>
-            <label>
-              Цена: ${priceRange[0]} — ${priceRange[1]}
+            <label id="price-label" hidden>
+              Price range
             </label>
             <div className={styles.priceRange}>
               <input
@@ -117,24 +122,31 @@ export const Catalog = () => {
                 min="0"
                 max="2000"
                 value={priceRange[0]}
+                aria-label="Minimum price"
                 onChange={e =>
                   setPriceRange([Number(e.target.value), priceRange[1]])
                 }
               />
+              <span aria-hidden="true">—</span>
               <input
                 type="range"
                 min="0"
                 max="2000"
                 value={priceRange[1]}
+                aria-label="Maximum price"
                 onChange={e =>
                   setPriceRange([priceRange[0], Number(e.target.value)])
                 }
               />
             </div>
+            <div className={styles.priceValues} aria-live="polite">
+              ${priceRange[0]} — ${priceRange[1]}
+            </div>
           </div>
           <div className={styles.filterGroup}>
-            <label>Sorting</label>
+            <label htmlFor="sort-select">Sorting</label>
             <select
+              id="sort-select"
               value={sortBy}
               onChange={e =>
                 setSortBy(
@@ -152,7 +164,10 @@ export const Catalog = () => {
               <option value="rating">By rating</option>
             </select>
           </div>
-          <button className={styles.resetBtn} onClick={resetFilters}>
+          <button
+            aria-label="Reset filters"
+            className={styles.resetBtn}
+            onClick={resetFilters}>
             Reset filters
           </button>
         </div>
@@ -160,8 +175,8 @@ export const Catalog = () => {
 
       {loading ? (
         <div className={styles.skeletonGrid}>
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className={styles.skeletonCard} />
+          {Array.from({ length: 12 }).map((_, i) => (
+            <SkeletonCard key={i} />
           ))}
         </div>
       ) : (
@@ -172,7 +187,10 @@ export const Catalog = () => {
             ))}
           </div>
           {hasMore && (
-            <button className={styles.loadMore} onClick={loadMore}>
+            <button
+              className={styles.loadMore}
+              onClick={loadMore}
+              aria-label="More">
               More
             </button>
           )}
@@ -184,3 +202,5 @@ export const Catalog = () => {
     </div>
   );
 };
+
+export default Catalog;
