@@ -39,6 +39,37 @@
   padding: 0.5rem;
 }
 
+.cartLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+  margin-right: 0.5rem;
+}
+
+.cartLink:hover {
+  color: var(--accent);
+}
+
+.cartBadge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: var(--accent);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
 .mobileMenu {
   position: fixed;
   top: 68px;

@@ -153,6 +153,7 @@
 
 .listCard {
   display: flex;
+  flex-direction: row;
   gap: 1rem;
   padding: 1rem;
   align-items: center;
@@ -219,11 +220,23 @@
   cursor: pointer;
   transition: all 0.2s;
   margin-top: 0.25rem;
+  max-width: 150px;
+  width: 100%;
 }
 
 .listCartBtn:hover {
   background: var(--accent-hover);
   transform: translateY(-1px);
+}
+.imageLink,
+.titleLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.titleLink:hover {
+  color: var(--accent);
 }
 
 @media (max-width: 480px) {

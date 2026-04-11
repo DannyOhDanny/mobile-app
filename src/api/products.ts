@@ -25,3 +25,8 @@ export const fetchCategories = async (): Promise<string[]> => {
   );
   return res.data.map(cat => cat.name);
 };
+
+export const fetchProductById = async (id: number): Promise<Product> => {
+  const res = await axios.get(`${API_BASE}/products/${id}`);
+  return res.data;
+};

@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X, Sparkles, ShoppingBag } from 'lucide-react';
 import { NavLink } from 'react-router';
+import { useCart } from '../../hooks/useCart';
 import styles from './Header.module.css';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { totalItems } = useCart();
 
   return (
     <header className={styles.header}>
@@ -29,18 +31,6 @@ export const Header = () => {
                 Main
               </NavLink>
             </li>
-
-            <li>
-              <NavLink
-                to="/catalog"
-                className={({ isActive }) =>
-                  isActive
-                    ? `${styles.navLink} ${styles.active}`
-                    : styles.navLink
-                }>
-                Catalog{' '}
-              </NavLink>
-            </li>
             <li>
               <NavLink
                 to="/about"
@@ -52,15 +42,34 @@ export const Header = () => {
                 About
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/catalog"
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.navLink} ${styles.active}`
+                    : styles.navLink
+                }>
+                Catalog
+              </NavLink>
+            </li>
           </ul>
         </nav>
 
-        <button
-          className={styles.burger}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Menu">
-          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <NavLink to="/cart" className={styles.cartLink}>
+            <ShoppingBag size={22} />
+            {totalItems > 0 && (
+              <span className={styles.cartBadge}>{totalItems}</span>
+            )}
+          </NavLink>
+          <button
+            className={styles.burger}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Menu">
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
 
         <div
           className={`${styles.mobileMenu} ${isMenuOpen ? styles.mobileMenuOpen : ''}`}>
@@ -79,6 +88,18 @@ export const Header = () => {
             </li>
             <li>
               <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.mobileNavLink} ${styles.active}`
+                    : styles.mobileNavLink
+                }
+                onClick={() => setIsMenuOpen(false)}>
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
                 to="/catalog"
                 className={({ isActive }) =>
                   isActive
@@ -91,14 +112,14 @@ export const Header = () => {
             </li>
             <li>
               <NavLink
-                to="/about"
+                to="/cart"
                 className={({ isActive }) =>
                   isActive
                     ? `${styles.mobileNavLink} ${styles.active}`
                     : styles.mobileNavLink
                 }
                 onClick={() => setIsMenuOpen(false)}>
-                About
+                Cart ({totalItems})
               </NavLink>
             </li>
           </ul>

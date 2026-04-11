@@ -2,6 +2,7 @@ import { Star, ShoppingCart } from 'lucide-react';
 import { useCart } from '../../hooks/useCart';
 import type { Product } from '../../types/products';
 import styles from './Card.module.css';
+import { Link } from 'react-router';
 
 interface CardProps {
   product: Product;
@@ -32,18 +33,10 @@ export const Card = ({ product, viewMode = 'grid' }: CardProps) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       if (i <= fullStars) {
-        stars.push(
-          <Star key={i} size={14} fill="currentColor" color="#fbbf24" />
-        );
+        stars.push(<Star key={i} size={14} fill="yellow" color="#fbbf24" />);
       } else if (i === fullStars + 1 && hasHalfStar) {
         stars.push(
-          <Star
-            key={i}
-            size={14}
-            fill="none"
-            color="#fbbf24"
-            strokeWidth={1.5}
-          />
+          <Star key={i} size={14} fill="none" color="#fbbf24" strokeWidth={1} />
         );
       } else {
         stars.push(<Star key={i} size={14} fill="none" color="#cbd5e1" />);
@@ -58,16 +51,22 @@ export const Card = ({ product, viewMode = 'grid' }: CardProps) => {
         {hasDiscount && (
           <div className={styles.discountBadge}>-{discountPercentage}%</div>
         )}
-        <div className={styles.listImage}>
-          <img
-            src={thumbnail}
-            alt={title}
-            loading="eager"
-            fetchPriority="high"
-          />
-        </div>
+        <Link to={`/product/${product.id}`} className={styles.imageLink}>
+          <div className={styles.listImage}>
+            <img
+              src={thumbnail}
+              alt={title}
+              loading="eager"
+              fetchPriority="high"
+            />
+          </div>
+        </Link>
         <div className={styles.listContent}>
-          <h3 className={styles.title}>{title}</h3>
+          <h3 className={styles.title}>
+            <Link to={`/product/${product.id}`} className={styles.titleLink}>
+              {title}
+            </Link>
+          </h3>
           <p className={styles.brand}>{brand}</p>
           <div className={styles.priceRating}>
             <div className={styles.priceBlock}>
@@ -102,11 +101,22 @@ export const Card = ({ product, viewMode = 'grid' }: CardProps) => {
       {hasDiscount && (
         <div className={styles.discountBadge}>-{discountPercentage}%</div>
       )}
-      <div className={styles.imageWrapper}>
-        <img src={thumbnail} alt={title} loading="eager" fetchPriority="high" />
-      </div>
+      <Link to={`/product/${product.id}`} className={styles.imageLink}>
+        <div className={styles.imageWrapper}>
+          <img
+            src={thumbnail}
+            alt={title}
+            loading="eager"
+            fetchPriority="high"
+          />
+        </div>
+      </Link>
       <div className={styles.content}>
-        <h3 className={styles.title}>{title}</h3>
+        <h3 className={styles.title}>
+          <Link to={`/product/${product.id}`} className={styles.titleLink}>
+            {title}
+          </Link>
+        </h3>
         <p className={styles.brand}>{brand}</p>
         <div className={styles.footer}>
           <div className={styles.priceRating}>
